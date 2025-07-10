@@ -1,0 +1,67 @@
+Started by user supravat dash
+Running as SYSTEM
+Building in workspace /var/lib/jenkins/workspace/devops_task3
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/devops_task3/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/SUPRAVAT001/devops_task3.git # timeout=10
+Fetching upstream changes from https://github.com/SUPRAVAT001/devops_task3.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.43.0'
+ > git fetch --tags --force --progress -- https://github.com/SUPRAVAT001/devops_task3.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 7760d03634056399507d7a6e5c949dc5dec6c750 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 7760d03634056399507d7a6e5c949dc5dec6c750 # timeout=10
+Commit message: "Re-add static-website as regular folder"
+ > git rev-list --no-walk 7760d03634056399507d7a6e5c949dc5dec6c750 # timeout=10
+[devops_task3] $ /bin/sh -xe /tmp/jenkins17969417717102730568.sh
++ cd static-website
++ docker build -t mystaticweb .
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 85B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/nginx:alpine
+#2 DONE 2.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/2] FROM docker.io/library/nginx:alpine@sha256:b2e814d28359e77bd0aa5fed1939620075e4ffa0eb20423cc557b375bd5c14ad
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 89B done
+#5 DONE 0.0s
+
+#6 [2/2] COPY . /usr/share/nginx/html
+#6 CACHED
+
+#7 exporting to image
+#7 exporting layers done
+#7 writing image sha256:390898ca821311470b6d60a9bda35973690cf39492674a1a846292f26e4ed83b 0.0s done
+#7 naming to docker.io/library/mystaticweb 0.0s done
+#7 DONE 0.0s
++ docker run -d -p 8888:80 mystaticweb
+aff86d93a3cb6be44f7f48fd404d37e155de3835a13edabb1c59ccbb61efb02e
++ sleep 5
++ curl -I http://localhost:8888
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0   116    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+HTTP/1.1 200 OK
+Server: nginx/1.29.0
+Date: Thu, 10 Jul 2025 06:53:13 GMT
+Content-Type: text/html
+Content-Length: 116
+Last-Modified: Thu, 10 Jul 2025 06:46:37 GMT
+Connection: keep-alive
+ETag: "686f61cd-74"
+Accept-Ranges: bytes
+
+Finished: SUCCESS
